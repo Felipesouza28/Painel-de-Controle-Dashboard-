@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ClimaGestão — Criar conta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css">
+  <script src="js/data-store.js"></script>
+</head>
+<body class="auth-page">
+  <main class="auth-shell auth-shell-register">
+    <section class="auth-visual">
+      <div class="visual-top">
+        <a class="brand auth-brand" href="index.html">
+          <span class="brand-mark">❄</span>
+          <span><strong>ClimaGestão</strong><small>GESTÃO INTELIGENTE</small></span>
+        </a>
+        <span class="secure-label">● Configuração inicial</span>
+      </div>
+      <div class="visual-content">
+        <span class="eyebrow">Sua operação, organizada</span>
+        <h1>Comece pelo<br><span>seu negócio.</span></h1>
+        <p>Cadastre os dados da empresa e personalize o painel para a realidade da sua operação.</p>
+        <ul class="benefits">
+          <li><span>✓</span> Cadastro da empresa e responsável</li>
+          <li><span>✓</span> Painel personalizado</li>
+          <li><span>✓</span> Clientes e equipamentos centralizados</li>
+          <li><span>✓</span> Ordens de serviço e agenda</li>
+        </ul>
+      </div>
+      <div class="visual-footer">ClimaGestão · Feito para quem trabalha com climatização.</div>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-card register-card">
+        <div class="mobile-brand brand">
+          <span class="brand-mark">❄</span>
+          <span><strong>ClimaGestão</strong><small>GESTÃO INTELIGENTE</small></span>
+        </div>
+        <div class="auth-heading">
+          <span class="eyebrow">Primeiro acesso</span>
+          <h2>Crie sua conta</h2>
+          <p>Preencha os dados básicos para configurar sua empresa.</p>
+        </div>
+
+        <form id="registerForm" novalidate>
+          <div class="form-grid">
+            <label class="field">
+              <span>Seu nome <b>*</b></span>
+              <input id="registerName" type="text" autocomplete="name" placeholder="Ex.: Carlos Almeida" required>
+            </label>
+            <label class="field">
+              <span>Nome da empresa <b>*</b></span>
+              <input id="registerCompany" type="text" autocomplete="organization" placeholder="Ex.: Ar Clima Serviços" required>
+            </label>
+          </div>
+          <div class="form-grid">
+            <label class="field">
+              <span>CNPJ <b>*</b></span>
+              <input id="registerCnpj" type="text" inputmode="numeric" maxlength="18" placeholder="00.000.000/0000-00" required>
+            </label>
+            <label class="field">
+              <span>Telefone</span>
+              <input id="registerPhone" type="tel" inputmode="tel" maxlength="15" placeholder="(00) 00000-0000">
+            </label>
+          </div>
+          <label class="field">
+            <span>E-mail de acesso <b>*</b></span>
+            <input id="registerEmail" type="email" autocomplete="email" placeholder="empresa@email.com" required>
+          </label>
+          <div class="form-grid">
+            <label class="field">
+              <span>Senha <b>*</b></span>
+              <div class="password-field">
+                <input id="registerPassword" type="password" autocomplete="new-password" placeholder="Mínimo de 6 caracteres" required minlength="6">
+                <button type="button" class="password-toggle" data-target="registerPassword">Mostrar</button>
+              </div>
+            </label>
+            <label class="field">
+              <span>Confirmar senha <b>*</b></span>
+              <input id="registerPasswordConfirm" type="password" autocomplete="new-password" placeholder="Repita a senha" required minlength="6">
+            </label>
+          </div>
+          <div id="registerMessage" class="form-message" role="alert"></div>
+          <button class="auth-button" type="submit">Criar minha conta <span>→</span></button>
+        </form>
+
+        <p class="auth-switch">Já possui uma conta? <a href="index.html">Voltar para o login</a></p>
+        <p class="demo-note">Protótipo de apresentação · os dados ficam somente neste navegador.</p>
+      </div>
+    </section>
+  </main>
+  <script src="js/auth.js"></script>
+</body>
+</html>

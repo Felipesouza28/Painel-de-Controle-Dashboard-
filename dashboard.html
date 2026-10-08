@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ClimaGestão — Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <script src="js/data-store.js"></script>
+    <script>if (!window.AccountStore.hasSession()) { window.location.replace("index.html"); }</script>
+    <div class="app">
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <div class="brand-mark">❄</div>
+                <div><strong>ClimaGestão</strong><span>GESTÃO INTELIGENTE</span></div>
+            </div>
+            <div class="company" id="companyProfile">
+                <div class="avatar" id="companyAvatar">EM</div>
+                <div><b id="companyName">Empresa</b><small id="companyDocument">CNPJ não informado</small>
+                </div><button title="Dados da empresa">⌄</button>
+            </div>
+            <nav>
+                <a class="nav-item active" data-page="dashboard"><span class="ico">⌂</span>Dashboard</a><a
+                    class="nav-item" data-page="clientes"><span class="ico">♙</span>Clientes</a><a class="nav-item"
+                    data-page="equipamentos"><span class="ico">❄</span>Equipamentos</a><a class="nav-item"
+                    data-page="os"><span class="ico">▤</span>Ordens de serviço <em>4</em></a><a class="nav-item"
+                    data-page="agenda"><span class="ico">□</span>Agenda</a><a class="nav-item"
+                    data-page="financeiro"><span class="ico">R$</span>Financeiro</a>
+            </nav>
+            <div class="nav-bottom"><a class="nav-item"><span class="ico">⚙</span>Configurações</a><a
+                    class="nav-item"><span class="ico">?</span>Central de ajuda</a></div>
+        </aside>
+        <main>
+            <header class="topbar"><button class="menu" id="menu">☰</button>
+                <div class="crumb" id="crumb">Visão geral</div>
+                <div class="top-actions"><button class="top-btn" title="Buscar">⌕</button><button class="top-btn"
+                        title="Notificações">♢<span class="dot"></span></button>
+                    <div class="user" id="userAvatar" title="Usuário conectado">AC</div><button class="logout-btn"
+                        id="logoutButton" title="Sair">↪</button>
+                </div>
+            </header>
+            <div class="content">
+                <section id="dashboard" class="page active-page">
+                    <div class="page-head">
+                        <div>
+                            <div class="eyebrow">Terça-feira, 6 de outubro</div>
+                            <h1>Bom dia, <span id="userName">sua empresa</span> 👋</h1>
+                            <p>Aqui está o resumo da operação de <strong id="dashboardCompanyName">sua empresa</strong>.</p><small id="userEmail" class="account-email"
+                                aria-label="E-mail da conta"></small>
+                        </div><button class="primary" id="newOs">+ Nova ordem de serviço</button>
+                    </div>
+                    <div class="cards four">
+                        <div class="card stat">
+                            <div><span>Receita no mês</span><strong>R$ 12.850</strong><small class="up">↑ 8,2% <i>vs.
+                                        mês anterior</i></small></div>
+                            <div class="stat-icon green">R$</div>
+                        </div>
+                        <div class="card stat">
+                            <div><span>Serviços hoje</span><strong>8</strong><small class="up">↑ 14% <i>vs. semana
+                                        passada</i></small></div>
+                            <div class="stat-icon blue">⌁</div>
+                        </div>
+                        <div class="card stat">
+                            <div><span>Em andamento</span><strong>3</strong><small>2 técnicos em campo</small></div>
+                            <div class="stat-icon orange">◷</div>
+                        </div>
+                        <div class="card stat">
+                            <div><span>A receber</span><strong>R$ 3.420</strong><small>7 cobranças pendentes</small>
+                            </div>
+                            <div class="stat-icon red">!</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Agenda de hoje</h2>
+                                    <p>Seus próximos atendimentos</p>
+                                </div><button class="link" data-page="agenda">Ver agenda →</button>
+                            </div>
+                            <div class="service-list">
+                                <div class="service">
+                                    <div class="service-time">08:00</div>
+                                    <div class="service-main"><b>Manutenção preventiva</b><span>João da Silva · LG Split
+                                            12.000 BTUs</span></div>
+                                    <div class="money">R$ 250</div><label class="badge blue">Em andamento</label>
+                                </div>
+                                <div class="service">
+                                    <div class="service-time">10:30</div>
+                                    <div class="service-main"><b>Instalação de 2 equipamentos</b><span>Clínica Saúde+ ·
+                                            2× Midea 18.000 BTUs</span></div>
+                                    <div class="money">R$ 1.800</div><label class="badge gray">Agendado</label>
+                                </div>
+                                <div class="service">
+                                    <div class="service-time">14:00</div>
+                                    <div class="service-main"><b>Higienização</b><span>Mariana Costa · Samsung WindFree
+                                            9.000 BTUs</span></div>
+                                    <div class="money">R$ 180</div><label class="badge gray">Agendado</label>
+                                </div>
+                                <div class="service">
+                                    <div class="service-time">16:30</div>
+                                    <div class="service-main"><b>Reparo — não está gelando</b><span>Ricardo Mendes ·
+                                            Gree 18.000 BTUs</span></div>
+                                    <div class="money">R$ 320</div><label class="badge orange">Aguardando</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card alerts">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Requer sua atenção</h2>
+                                    <p>Oportunidades e pendências</p>
+                                </div>
+                            </div>
+                            <div class="alert">
+                                <div class="alert-icon orange">$</div>
+                                <div><b>7 pagamentos pendentes</b><span>R$ 3.420 em aberto</span></div><button
+                                    class="link" data-page="financeiro">Cobrar</button>
+                            </div>
+                            <div class="alert">
+                                <div class="alert-icon purple">↻</div>
+                                <div><b>12 manutenções próximas</b><span>Clientes para contatar</span></div><button
+                                    class="link" data-page="clientes">Ver</button>
+                            </div>
+                            <div class="alert">
+                                <div class="alert-icon blue">✓</div>
+                                <div><b>3 orçamentos aguardando</b><span>R$ 2.750 em propostas</span></div><button
+                                    class="link">Abrir</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lower">
+                        <div class="card">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Receita mensal</h2>
+                                    <p>Evolução dos últimos 6 meses</p>
+                                </div><button class="secondary">2026 ▾</button>
+                            </div>
+                            <div class="chart-wrap">
+                                <div class="chart">
+                                    <div class="bar-col"><i class="bar" style="height:45%"></i><label>Mai</label></div>
+                                    <div class="bar-col"><i class="bar" style="height:57%"></i><label>Jun</label></div>
+                                    <div class="bar-col"><i class="bar" style="height:51%"></i><label>Jul</label></div>
+                                    <div class="bar-col"><i class="bar" style="height:69%"></i><label>Ago</label></div>
+                                    <div class="bar-col"><i class="bar" style="height:64%"></i><label>Set</label></div>
+                                    <div class="bar-col"><i class="bar" style="height:89%"></i><label>Out</label></div>
+                                </div>
+                                <div class="legend"><span>Faturamento acumulado</span><b>R$ 62.430</b></div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Clientes recentes</h2>
+                                    <p><span id="dashboardClientCount">0</span> <span id="dashboardClientCountLabel">clientes cadastrados</span></p>
+                                </div><button class="link" data-page="clientes">Ver todos →</button>
+                            </div>
+                            <div class="people" id="dashboardRecentClients"></div>
+                        </div>
+                    </div>
+                    <div class="kpi-banner">
+                        <div class="star">✦</div>
+                        <div>
+                            <h3>Você está no controle</h3>
+                            <p>92% dos serviços deste mês foram concluídos no prazo.</p>
+                        </div><strong>92% <span class="small">no prazo</span></strong>
+                    </div>
+                </section>
+                <section id="clientes" class="page">
+                    <div class="page-head">
+                        <div>
+                            <div class="eyebrow">Relacionamento</div>
+                            <h1>Clientes</h1>
+                            <p>Centralize contatos, equipamentos e histórico de atendimento.</p>
+                        </div><button class="primary" id="newClientButton" type="button">+ Novo cliente</button>
+                    </div>
+                    <div class="toolbar">
+                        <label class="search" for="clientSearch">⌕ <input id="clientSearch" type="search" placeholder="Buscar por nome, documento, telefone ou e-mail" aria-label="Buscar clientes"></label>
+                    </div>
+                    <div class="card table-card">
+                        <table id="clientsTable">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Telefone</th>
+                                    <th>Endereço</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clientsTableBody"></tbody>
+                        </table>
+                        <div class="client-empty" id="clientsEmpty" hidden>
+                            <div class="client-empty-icon">♙</div>
+                            <h2 id="clientsEmptyTitle">Sua lista de clientes começa aqui</h2>
+                            <p id="clientsEmptyText">Cadastre seu primeiro cliente para manter contatos e informações importantes organizados.</p>
+                            <button class="primary" id="emptyNewClientButton" type="button">+ Cadastrar primeiro cliente</button>
+                        </div>
+                    </div>
+                </section>
+                <section id="equipamentos" class="page">
+                    <div class="page-head">
+                        <div>
+                            <div class="eyebrow">Patrimônio técnico</div>
+                            <h1>Equipamentos</h1>
+                            <p>Tenha o histórico de cada ar-condicionado na palma da mão.</p>
+                        </div><button class="primary">+ Novo equipamento</button>
+                    </div>
+                    <div class="cards four">
+                        <div class="card stat">
+                            <div><span>Total cadastrados</span><strong>184</strong><small>↑ 12 este mês</small></div>
+                            <div class="stat-icon blue">❄</div>
+                        </div>
+                        <div class="card stat">
+                            <div><span>Preventivas próximas</span><strong>12</strong><small>Próximos 30 dias</small>
+                            </div>
+                            <div class="stat-icon orange">↻</div>
+                        </div>
+                        <div class="card stat">
+                            <div><span>Em garantia</span><strong>38</strong><small>Equipamentos</small></div>
+                            <div class="stat-icon green">✓</div>
+                        </div>
+                        <div class="card stat">
+                            <div><span>Manutenção atrasada</span><strong>7</strong><small>Precisam de contato</small>
+                            </div>
+                            <div class="stat-icon red">!</div>
+                        </div>
+                    </div>
+                    <div class="card table-card" style="margin-top:18px">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Equipamento</th>
+                                    <th>Cliente</th>
+                                    <th>Local</th>
+                                    <th>Última manutenção</th>
+                                    <th>Próxima</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>LG Dual Inverter</b><small>Split · 12.000 BTUs</small></td>
+                                    <td>João da Silva</td>
+                                    <td>Quarto</td>
+                                    <td>02/04/2026</td>
+                                    <td>Hoje</td>
+                                    <td><span class="badge orange">Preventiva hoje</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Samsung WindFree</b><small>Split · 9.000 BTUs</small></td>
+                                    <td>Mariana Costa</td>
+                                    <td>Sala</td>
+                                    <td>15/06/2026</td>
+                                    <td>15/12/2026</td>
+                                    <td><span class="badge green">Em dia</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Midea Xtreme Save</b><small>Split · 18.000 BTUs</small></td>
+                                    <td>Clínica Saúde+</td>
+                                    <td>Recepção</td>
+                                    <td>20/03/2026</td>
+                                    <td>20/09/2026</td>
+                                    <td><span class="badge" style="background:#fff0f0;color:#c43f3f">Atrasada</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <section id="os" class="page">
+                    <div class="page-head">
+                        <div>
+                            <div class="eyebrow">Operação</div>
+                            <h1>Ordens de serviço</h1>
+                            <p>Acompanhe cada atendimento do agendamento ao pagamento.</p>
+                        </div><button class="primary" id="newOs2">+ Nova ordem de serviço</button>
+                    </div>
+                    <div class="kanban">
+                        <div class="kanban-col">
+                            <h3>Agendadas <span>2</span></h3>
+                            <article class="os-card"><b>#00128 · INSTALAÇÃO</b><strong>Clínica Saúde+</strong><small>02
+                                    out · 10:30</small><label>R$ 1.800</label></article>
+                            <article class="os-card"><b>#00129 · LIMPEZA</b><strong>Ricardo Mendes</strong><small>03 out
+                                    · 09:00</small><label>R$ 220</label></article>
+                        </div>
+                        <div class="kanban-col">
+                            <h3>Em andamento <span>3</span></h3>
+                            <article class="os-card"><b>#00125 · MANUTENÇÃO</b><strong>João da Silva</strong><small>Hoje
+                                    · 08:00 · Técnico: Carlos</small><label>R$ 250</label></article>
+                            <article class="os-card"><b>#00126 · REPARO</b><strong>Paulo Oliveira</strong><small>Hoje ·
+                                    13:30 · Técnico: Lucas</small><label>R$ 380</label></article>
+                        </div>
+                        <div class="kanban-col">
+                            <h3>Concluídas <span>5</span></h3>
+                            <article class="os-card"><b>#00124 · HIGIENIZAÇÃO</b><strong>Mariana
+                                    Costa</strong><small>Hoje · 07:30</small><label>R$ 180 · Pago</label></article>
+                            <article class="os-card"><b>#00123 · INSTALAÇÃO</b><strong>Loja Central</strong><small>30
+                                    set · 15:00</small><label>R$ 950 · Pago</label></article>
+                        </div>
+                    </div>
+                </section>
+                <section id="agenda" class="page">
+                    <div class="page-head">
+                        <div>
+                            <div class="eyebrow">Planejamento</div>
+                            <h1>Agenda</h1>
+                            <p>Organize atendimentos e visualize a carga da equipe.</p>
+                        </div><button class="primary" id="newOs3">+ Agendar serviço</button>
+                    </div>
+                    <div class="card calendar">
+                        <div class="calendar-head"><button>‹</button>
+                            <h2>Outubro 2026</h2><button>›</button>
+                        </div>
+                        <div class="week">
+                            <span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span>
+                        </div>
+                        <div class="days" id="calendarDays"></div>
+                    </div>
+                </section>
+                <section id="financeiro" class="page">
+                    <div class="page-head">
+                        <div>
+                            <div class="eyebrow">Resultado</div>
+                            <h1>Financeiro</h1>
+                            <p>Veja quanto entrou, quanto saiu e o que ainda falta receber.</p>
+                        </div><button class="primary">+ Lançamento</button>
+                    </div>
+                    <div class="cards four">
+                        <div class="card stat">
+                            <div><span>Receita no mês</span><strong>R$ 12.850</strong><small class="up">↑ 8,2%</small>
+                            </div>
+                            <div class="stat-icon green">R$</div>
+                        </div>
+                        <div class="card stat">
+                            <div><span>Despesas</span><strong>R$ 4.230</strong><small>33% da receita</small></div>
+                            <div class="stat-icon red">−</div>
+                        </div>
+                        <div class="card stat">
+                            <div><span>Resultado</span><strong>R$ 8.620</strong><small>Margem de 67%</small></div>
+                            <div class="stat-icon blue">✓</div>
+                        </div>
+                        <div class="card stat">
+                            <div><span>A receber</span><strong>R$ 3.420</strong><small>7 cobranças</small></div>
+                            <div class="stat-icon orange">!</div>
+                        </div>
+                    </div>
+                    <div class="card table-card" style="margin-top:18px">
+                        <div class="card-head">
+                            <div>
+                                <h2>Últimos lançamentos</h2>
+                                <p>Movimentações financeiras</p>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Categoria</th>
+                                    <th>Data</th>
+                                    <th>Valor</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>OS #00124 — Higienização</b><small>Mariana Costa</small></td>
+                                    <td>Serviço</td>
+                                    <td>06/10/2026</td>
+                                    <td style="color:var(--green);font-weight:800">+ R$ 180</td>
+                                    <td><span class="badge green">Recebido</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Compra de materiais</b><small>Fornecedor Clima Parts</small></td>
+                                    <td>Materiais</td>
+                                    <td>05/10/2026</td>
+                                    <td style="color:var(--red);font-weight:800">− R$ 620</td>
+                                    <td><span class="badge green">Pago</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>OS #00125 — Manutenção</b><small>João da Silva</small></td>
+                                    <td>Serviço</td>
+                                    <td>06/10/2026</td>
+                                    <td>R$ 250</td>
+                                    <td><span class="badge orange">Pendente</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <div class="modal" id="modal">
+        <div class="modal-box"><button class="close" id="close">×</button>
+            <h2>Nova ordem de serviço</h2>
+            <p>Cadastre um atendimento em poucos segundos.</p>
+            <form id="osForm"><label>Cliente<input required placeholder="Nome do cliente"></label>
+                <div class="form-row"><label>Serviço<select>
+                            <option>Manutenção preventiva</option>
+                            <option>Higienização</option>
+                            <option>Instalação</option>
+                            <option>Reparo</option>
+                        </select></label><label>Valor<input placeholder="R$ 0,00"></label></div>
+                <div class="form-row"><label>Data<input type="date"></label><label>Horário<input type="time"></label>
+                </div><label>Observações<textarea
+                        placeholder="Diagnóstico, materiais, detalhes..."></textarea></label><button
+                    class="primary full">Criar ordem de serviço</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal" id="clientModal" aria-hidden="true">
+        <div class="modal-box client-modal" role="dialog" aria-modal="true" aria-labelledby="clientModalTitle">
+            <button class="close" id="closeClientModal" type="button" aria-label="Fechar">×</button>
+            <h2 id="clientModalTitle">Novo cliente</h2>
+            <p id="clientModalDescription">Informe os dados para adicionar à sua carteira.</p>
+            <form id="clientForm" novalidate>
+                <label>Nome completo / Razão social <b>*</b><input id="clientName" name="name" required maxlength="120" autocomplete="name" placeholder="Ex.: Ana Souza ou Empresa Ltda."></label>
+                <div class="form-row">
+                    <label>CPF/CNPJ<input id="clientDocument" name="document" inputmode="numeric" maxlength="18" placeholder="000.000.000-00"></label>
+                    <label>Telefone<input id="clientPhone" name="phone" type="tel" inputmode="tel" maxlength="15" placeholder="(00) 00000-0000"></label>
+                </div>
+                <label>E-mail<input id="clientEmail" name="email" type="email" maxlength="160" autocomplete="email" placeholder="cliente@email.com"></label>
+                <label>Endereço<input id="clientAddress" name="address" maxlength="200" autocomplete="street-address" placeholder="Rua, número, bairro, cidade"></label>
+                <label>Observações<textarea id="clientNotes" name="notes" maxlength="1000" placeholder="Informações importantes sobre este cliente"></textarea></label>
+                <div class="client-details" id="clientDetails" hidden></div>
+                <div class="client-form-message" id="clientFormMessage" role="alert" aria-live="polite"></div>
+                <div class="client-modal-actions">
+                    <button class="secondary" id="cancelClientModal" type="button">Cancelar</button>
+                    <button class="primary" id="saveClientButton" type="submit">Salvar cliente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+    <script src="js/clients.js" defer></script>
+</body>
+
+</html>
